@@ -39,8 +39,27 @@ def welcome_message(user_name="", place=""):
 
 def list_average(input_list, avg_type = "mean"):
     if avg_type=='mode':
-        return max(input_list, key = input_list.count)
+        dict = {} 
+        if len(input_list) != 0: 
+            for n in input_list:
+    	        keys = dict.keys()  
+    	        if n in keys:  
+    	            dict[n] += 1  
+    	        else:
+    	            dict[n] = 1  
+            max_value = max(dict.values()) 
+            max_keys = [i for i, v in dict.items() if v == max_value]
+            return max_keys
+        else:
+            return []
     if avg_type=='mean':
-        return sum(input_list)/len(input_list) 
+        if len(input_list) != 0:
+            return sum(input_list)/len(input_list) 
+        else:
+            return 0
     if avg_type=='median':
-        return sorted(input_list) [len(input_list)//2]
+        if len(input_list) != 0:
+            return sorted(input_list) [len(input_list)//2]
+        else:
+            return None
+   
